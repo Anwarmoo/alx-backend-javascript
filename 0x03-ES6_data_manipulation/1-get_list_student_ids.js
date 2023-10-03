@@ -1,10 +1,9 @@
-/* eslint-disable no-array-constructor */
-
-export default function getListStudents(studentArray) {
-  if (!Array.isArray(studentArray)) {
-    return new Array();
+export default function getListStudentIds(arr) {
+  let newArr = [];
+  if (arr instanceof Array) {
+    newArr = arr.map((item) => item.id);
   }
 
-  return studentArray.map((student) => student.id);
+  return newArr;
 }
 
