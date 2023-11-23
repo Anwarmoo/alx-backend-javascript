@@ -1,23 +1,31 @@
-function calculateNumber(type, a, b) {
-    const an = Math.round(a);
-    const bn = Math.round(b);
-    let c = 0;
-    switch (type) {
-    case 'SUM':
-	c = an + bn;
-	break;
-    case 'SUBTRACT':
-	c = an - bn;
-	break;
-    case 'DIVIDE':
-      if (bn === 0) {
-            c = "Error";
-      } else {
-            c = an / bn;
-      }
-      break;
-    }
-    return c;
-}
+const assert = require("assert");
+const { it, describe } = require("mocha");
+const calculateNumber = require("./1-calcul");
 
-module.exports = calculateNumber;
+describe("calculateNumber()", function() {
+
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("SUM", 1, 2);
+      assert.strictEqual(res, 3);
+    });
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("SUBTRACT", 1.4, 2.2);
+      assert.strictEqual(res, -1);
+    });
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("SUBTRACT", 4.9, 2.7);
+      assert.strictEqual(res, 2);
+    });
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("DIVIDE", 4, 2);
+      assert.strictEqual(res, 2);
+    });
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("DIVIDE", 1.7, 0);
+      assert.strictEqual(res, "Error");
+    });
+    it(`checking if numbers round`, function() {
+      const res = calculateNumber("DIVIDE", 1.4, 4.6);
+      assert.strictEqual(res, 0.2);
+    });
+});
